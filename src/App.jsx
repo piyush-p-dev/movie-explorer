@@ -75,10 +75,3 @@ function App() {
 }
 
 export default App;
-// <Moviecard
-// movies = { movies };
-// setMovies = { setMovies };
-// search = { search };
-// setSearch = { setSearch };
-// getMovies = { getMovies };
-// ></Moviecard>
