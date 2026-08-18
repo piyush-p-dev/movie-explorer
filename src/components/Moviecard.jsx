@@ -1,37 +1,28 @@
-function Moviecard({ movies, setMovies, search, setSearch, getMovies }) {
+import "./Moviecard.css";
+function Moviecard({ movie }) {
   return (
-    <div>
-      <input
-        type="search"
-        name="search"
-        id="Search"
-        value={search}
-        onChange={(e) => {
-          setSearch(e.target.value);
-        }}
-      />
-      <button onClick={getMovies} type="button">
-        Search
-      </button>
-
-      <div>
-        {movies.map((Movie) => (
-          <div key={Movie.id}>
-            {Movie.poster_path && (
-              <img
-                src={`https://image.tmdb.org/t/p/w500${Movie.poster_path}`}
-                alt={Movie.title}
-              />
-            )}
-            <br />
-            <b>Title:</b> {Movie.title} <br />
-            <b>Release Date:</b> {Movie.release_date} <br />
-            <b>Vote average:</b> {Movie.vote_average} <br />
-            <b>id:</b> {Movie.id} <br />
-            <br />
-            <br />
-          </div>
-        ))}
+    <div className="card">
+      <div className="card-top">
+        {movie.poster_path && (
+          <img
+            src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+            alt={movie.title}
+          />
+        )}
+      </div>
+      <div className="card-content">
+        <div className="Title">
+          <b>Title:</b> {movie.title} <br />
+        </div>
+        <div className="ReleaseDate">
+          <b>Release Date:</b> {movie.release_date} <br />
+        </div>
+        <div className="Voteaverage">
+          <b>Vote average:</b> {movie.vote_average} <br />
+        </div>
+        <div className="movieid">
+          <b>id:</b> {movie.id} <br />
+        </div>
       </div>
     </div>
   );
