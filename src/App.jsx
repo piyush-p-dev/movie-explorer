@@ -1,6 +1,9 @@
 import { useState, useEffect } from "react";
+import { Route, Router, Routes } from "react-router-dom";
 // import "./App.css";
 import Moviecard from "./components/Moviecard";
+import MovieDetails from "./pages/MovieDetails";
+import Home from "./pages/Home";
 
 function App() {
   const [movies, setMovies] = useState([]);
@@ -35,42 +38,25 @@ function App() {
   }, []);
 
   return (
-    <div className="whole">
-      <div className="searchAndClick">
-        <input
-          type="search"
-          name="search"
-          id="Search"
-          value={search}
-          onChange={(e) => {
-            setSearch(e.target.value);
-          }}
-        />
-        <button onClick={getMovies} type="button">
-          Search
-        </button>
-      </div>
-
-      {loading ? (
-        <p>Loading...</p>
-      ) : error ? (
-        <p>{error}</p>
-      ) : (
-        <div className="movie-grid">
-          {movies.map((movie) => (
-            <Moviecard
-              key={movie.id}
-              movie={movie}
+    <>
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <Home
               movies={movies}
               setMovies={setMovies}
               search={search}
               setSearch={setSearch}
+              loading={loading}
+              error={error}
               getMovies={getMovies}
-            />
-          ))}
-        </div>
-      )}
-    </div>
+            ></Home>
+          }
+        ></Route>
+        <Route path="/movie/:id" element={<MovieDetails />} />
+      </Routes>
+    </>
   );
 }
 
